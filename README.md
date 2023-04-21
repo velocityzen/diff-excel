@@ -14,7 +14,7 @@ CLI tool to show difference in two excel files row by row
 If you run it with `-h` parameters you'll see help:
 
 ```
-❯ ./bin/diff-excel --help
+❯ diff-excel --help
 Usage: diff-excel [options]
 
 Options:
