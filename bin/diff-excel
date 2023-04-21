@@ -1,0 +1,9 @@
+#!/usr/bin/env node
+
+const {default: runCli} = require("../");
+
+async function main() {
+  await runCli();
+}
+
+(main)();
