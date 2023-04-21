@@ -1,6 +1,6 @@
 {
   "name": "diff-excel",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "CLI tool to show difference in two excel files row by row",
   "bin": {
     "diff-excel": "./bin/diff-excel"
