@@ -7,6 +7,8 @@ import createExcelParserStream, {
   RowWithColumns,
 } from "excel-row-stream";
 
+import {parse as createCSVParseStream} from 'fast-csv'
+
 import { Options, Side, DiffHanlder } from "./types";
 import { createComparator } from "./comparator";
 
@@ -20,15 +22,17 @@ export async function compareExcelSheets(
 
   const leftStream = createReadStream(options.left);
   const leftWithColumnsStream = createRowToRowWithColumnsStream();
-  const leftExcelParserStream = createExcelParserStream({
-    matchSheet,
-  });
+  // const leftExcelParserStream = createExcelParserStream({
+  //   matchSheet,
+  // });
+  const leftExcelParserStream = createCSVParseStream();
 
   const rightStream = createReadStream(options.right);
   const rightWithColumnsStream = createRowToRowWithColumnsStream();
-  const rightExcelParserStream = createExcelParserStream({
-    matchSheet,
-  });
+  // const rightExcelParserStream = createExcelParserStream({
+  //   matchSheet,
+  // });
+  const rightExcelParserStream = createCSVParseStream();
 
   const leftRowsStream = new Writable({
     objectMode: true,
@@ -48,13 +52,13 @@ export async function compareExcelSheets(
     pipeline(
       leftStream,
       leftExcelParserStream,
-      leftWithColumnsStream,
+      // leftWithColumnsStream,
       leftRowsStream
     ).then(() => done(Side.Left)),
     pipeline(
       rightStream,
       rightExcelParserStream,
-      rightWithColumnsStream,
+      // rightWithColumnsStream,
       rightRowsStream
     ).then(() => done(Side.Right)),
   ]);
